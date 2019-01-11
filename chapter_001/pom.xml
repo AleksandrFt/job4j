@@ -1,11 +1,41 @@
 <project>
-   <modelVersion>4.0.0</modelVersion>
-   <artifactId>chapter_001</artifactId>
-   <version>2.0</version>
-   <packaging>jar</packaging>
-   <parent>
-       <groupId>ru.job4j</groupId>
-       <artifactId>junior</artifactId>
-       <version>2.0</version>
-    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ru.afateev</groupId>
+    <artifactId>chapter_001</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0</version>
+	
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<compileVersion>1.8</compileVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
