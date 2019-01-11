@@ -1,7 +1,7 @@
 package ru.job4j;
 
 /**
-* Class that repereats string 3 times.
+* Class that repeats string 3 times.
 * @author afateev
 * @since 11.01.2019
 * @version 1.0
@@ -14,7 +14,7 @@ public class Calculate {
 	
 /**
 * Method main.
-* @param args - args
+* @param args args
 */
 	public static void main (String[] args) {
 		Calculate calc = new Calculate();
