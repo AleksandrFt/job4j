@@ -8,6 +8,11 @@ package ru.job4j;
 */
 public class Calculate {
 
+/**
+* Method echo.
+* @param value string
+* @return Repeat your string 3 times.
+*/
 	public String echo(String value) {
 		return String.format("%s %s %s", value, value, value);
 	}
