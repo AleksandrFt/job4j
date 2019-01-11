@@ -1,4 +1,4 @@
-package ru.afateev;
+package ru.job4j;
 
 /**
 *
