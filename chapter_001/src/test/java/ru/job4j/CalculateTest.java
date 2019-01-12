@@ -5,17 +5,17 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 /**
-* Test
-*
-* @author Aleksandr Fateev
-* @version 1.1
-* @since 1.0
-*/
+ * Test
+ *
+ * @author Aleksandr Fateev
+ * @version 1.1
+ * @since 1.0
+ */
 public class CalculateTest {
 
-/**
-* Test echo.
-*/
+	/**
+	 * Test echo.
+	 */
 	@Test
 	public void whenTakenNameThenThreeEchoPlusName() {
 		String input = "Aleksnadr Fateev";
@@ -24,5 +24,4 @@ public class CalculateTest {
 		String result = calc.echo(input);
 		assertThat(result, is(expect));
 	}
-	
 }
