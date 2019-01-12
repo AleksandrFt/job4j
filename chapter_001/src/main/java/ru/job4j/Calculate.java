@@ -7,7 +7,7 @@ package ru.job4j.calculate;
 * @author afateev
 * @since 11.01.2019
 * @version 1.0
-*/
+*/	
 public class Calculate {
 
 /**
@@ -27,3 +27,4 @@ public class Calculate {
 		return "Echo, echo, echo : " + name;
 	}
 }
+
