@@ -6,7 +6,7 @@ package ru.job4j;
 * Class that repeats string 3 times.
 * @author afateev
 * @since 11.01.2019
-* @version 1.0
+* @version 1.1
 */	
 public class Calculate {
 
