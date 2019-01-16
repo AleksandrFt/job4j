@@ -5,6 +5,7 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+
 public class CalculatorTest {
 
     @Test
@@ -28,7 +29,7 @@ public class CalculatorTest {
     @Test
     public void whenTwoMultiTwoThenFour() {
         Calculator calc = new Calculator();
-        calc.multipli(2d, 2d);
+        calc.multiple(2d, 2d);
         double result = calc.getResult();
         double expected = 4d;
         assertThat(result, is(expected));
