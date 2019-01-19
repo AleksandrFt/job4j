@@ -31,4 +31,11 @@ public class MaxTest {
         int result = maxim.max(3, 1);
         assertThat(result, is(3));
     }
+
+    @Test
+    public void threeDigits() {
+        Max maxim = new Max();
+        int result = maxim.max(3, 1, 4);
+        assertThat(result, is(4));
+    }
 }
