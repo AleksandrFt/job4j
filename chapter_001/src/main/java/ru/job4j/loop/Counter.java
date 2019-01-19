@@ -10,6 +10,12 @@ package ru.job4j.loop;
 
 public class Counter {
 
+    /**
+     * Method calculates sum of even numbers in sequence.
+     * @param start Start sequence.
+     * @param finish Finish sequence.
+     * @return Sum of even in sequence.
+     */
     public int add(int start, int finish) {
 
         int sum = 0;
@@ -19,21 +25,6 @@ public class Counter {
                 sum = sum + number;
             }
         }
-
         return sum;
-
-
-
-        /*
-        while (number <= finish) {
-            if (number % 2 == 0) {
-                sum = sum + number;
-                number++;
-            } else {
-                number++;
-            }
-        }
-        return sum;
-        */
     }
 }
