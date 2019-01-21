@@ -12,5 +12,12 @@ public class SquareTest {
         assertThat(result, is(new int[] {1, 4, 9, 16, 25}));
     }
 
+    @Test
+    public void whenOneNumberThenArray() {
+        Square arrayExponent = new Square();
+        int[] result = arrayExponent.calculate(1);
+        assertThat(result, is(new int[] {1}));
+    }
+
 
 }
