@@ -8,7 +8,7 @@ public class ChekTest {
     @Test
     public void whenArrayContainsTrueAndFalseThanFalse() {
         Chek compare = new Chek();
-        boolean[] array = {false, false, true};
+        boolean[] array = {false, true, false};
         boolean result = compare.mono(array);
         assertThat(result, is(false));
     }
@@ -24,7 +24,7 @@ public class ChekTest {
         Chek compare = new Chek();
         boolean[] array = {false, false, false};
         boolean result = compare.mono(array);
-        assertThat(result, is(false));
+        assertThat(result, is(true));
     }
 
 }
