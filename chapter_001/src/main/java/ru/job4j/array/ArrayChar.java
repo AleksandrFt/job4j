@@ -28,12 +28,19 @@ public class ArrayChar {
     public boolean startWith(String prefix) {
         boolean result = true;
         char[] value = prefix.toCharArray();
+
+        for (int index = 0; index < value.length; index++) {
+            if (value[index] != data[index]) {
+                result = false;
+            }
+        }
+        /*
         int index = -1;
         while (++index < value.length) {
             if (data[index] != value[index]) {
                 result = false;
             }
-        }
+        }*/
         return result;
     }
 }
