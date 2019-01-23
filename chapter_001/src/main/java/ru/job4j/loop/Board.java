@@ -22,7 +22,7 @@ public class Board {
         String ln = System.lineSeparator();
 
         for (int j = 0; j < height; j++) {
-            for (int i = 0; i < width; i++){
+            for (int i = 0; i < width; i++) {
                 if ((i + j) % 2 == 0) {
                     screen.append("X");
                 } else {

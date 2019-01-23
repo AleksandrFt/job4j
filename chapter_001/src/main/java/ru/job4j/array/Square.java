@@ -15,7 +15,7 @@ public class Square {
      * @param bound Integer number.
      * @return array with integer numbers.
      */
-    public int[] calculate (int bound) {
+    public int[] calculate(int bound) {
         int[] rst = new int[bound];
         for (int index = 0; index < bound; index++) {
             rst[index] = (index + 1) * (index + 1);
