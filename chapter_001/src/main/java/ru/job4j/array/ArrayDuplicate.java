@@ -21,7 +21,7 @@ public class ArrayDuplicate {
         int length = array.length;
 
         for (int i = 0; i < length - 1; i++) {
-            for (int j = i + 1; j < length; j++){
+            for (int j = i + 1; j < length; j++) {
 
                 if (array[i].equals(array[j])) {
                     String buf = array[j];

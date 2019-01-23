@@ -10,7 +10,7 @@ public class MatrixTest {
     public void when5on5() {
         Matrix array = new Matrix();
         int[][] result = array.multiple(5);
-        int expect[][] = {
+        int[][] expect = {
                 {1,  2,  3,  4,  5},
                 {2,  4,  6,  8, 10},
                 {3,  6,  9, 12, 15},
