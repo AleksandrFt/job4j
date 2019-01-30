@@ -23,6 +23,7 @@ public class MatrixCheck {
         while (++index < size) {
             if ((data[0][0] != data[index][index]) && (data[0][size - 1] != data[index][size - 1 - index])) {
                 result = false;
+                break;
             }
         }
         //while (++index < size) {
