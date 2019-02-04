@@ -17,9 +17,7 @@ public class Counter {
      * @return Sum of even in sequence.
      */
     public int add(int start, int finish) {
-
         int sum = 0;
-
         for (int number = start; number <= finish; number++) {
             if (number % 2 == 0) {
                 sum = sum + number;

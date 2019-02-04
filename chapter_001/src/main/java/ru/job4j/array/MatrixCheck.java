@@ -15,9 +15,7 @@ public class MatrixCheck {
      * @return true or false.
      */
     public boolean mono(boolean[][] data) {
-
         boolean result = true;
-
         int size = data.length;
         int index = 0;
         while (++index < size) {
@@ -26,11 +24,6 @@ public class MatrixCheck {
                 break;
             }
         }
-        //while (++index < size) {
-        //    if (data[0][size - 1] != data[index][size - 1 - index]) {
-        //        result = false;
-        //    }
-        //}
         return result;
     }
 }

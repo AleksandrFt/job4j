@@ -25,7 +25,6 @@ public class Paint {
         }
         return screen.toString();
     }
-
     public String leftTrl(int height) {
         return this.loopBy(
                 height,
@@ -33,7 +32,6 @@ public class Paint {
                 (row, column) -> row >= height - column - 1
         );
     }
-
     public String rightTrl(int height) {
         return this.loopBy(
                 height,
@@ -41,7 +39,6 @@ public class Paint {
                 (row, column) -> row >= column
         );
     }
-
     public String piramid(int height) {
         return this.loopBy(
                 height,
@@ -49,6 +46,4 @@ public class Paint {
                 (row, column) -> row >= height - column - 1 && row + height - 1 >= column
         );
     }
-
-
 }
