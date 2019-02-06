@@ -6,6 +6,6 @@ public class Profession {
     private String profession;
 
     public String getName(Profession profession) {
-
+        return name;
     }
 }
