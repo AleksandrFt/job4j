@@ -28,13 +28,17 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item firstItem = new Item("test1", "testDescription1", 1L);
         Item secondItem = new Item("test2", "testDescription2", 2L);
+        Item thirdItem = new Item("test3", "testDescription3", 3L);
         //Добавляем заявки в трекер.
         tracker.add(firstItem);
         tracker.add(secondItem);
+        tracker.add(thirdItem);
         //Удаляем первую заявку.
-        tracker.delete(firstItem.getId());
+        //tracker.delete(firstItem.getId());
+        tracker.delete(thirdItem.getId());
         //Проверяем, что первая заявка не находится.
-        assertNull(tracker.findById(firstItem.getId()));
+        //assertNull(tracker.findById(firstItem.getId()));
+        assertNull(tracker.findById(thirdItem.getId()));
     }
 
     @Test

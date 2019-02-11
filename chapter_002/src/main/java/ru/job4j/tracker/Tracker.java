@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Tracker {
 
-    private Item[] items = new Item[100];
+    private Item[] items = new Item[3];
     private static final Random RN = new Random();
     private int position = 0;
 
@@ -52,10 +52,18 @@ public class Tracker {
         boolean result = false;
         for (int i = 0; i < this.position; i++) {
             if (this.items[i].getId().equals(id)) {
-                System.arraycopy(items, i + 1, items, i, this.position - i);
-                this.position--;
-                result = true;
-                break;
+                if (i == this.position - 1) {
+                    items[i] = null;
+                    this.position--;
+                    result = true;
+                    break;
+                } else {
+                    this.items[i] = null;
+                    System.arraycopy(items, i + 1, items, i, this.position - i);
+                    this.position--;
+                    result = true;
+                    break;
+                }
             }
         }
         return result;
