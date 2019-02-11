@@ -44,13 +44,13 @@ public class Tracker {
     }
 
     /**
-     * Добавить перестановку элементов.
+     * Метод удаляет заявку в трекере.
      * @param id удаляемой заявки.
      * @return true, если заявка была удалена.
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int i = 0; i < this.position; i++) {
+        for (int i = 0; i <= this.position; i++) {
             if (this.items[i].getId().equals(id)) {
                 if (i < this.position) {
                     System.arraycopy(items, i + 1, items, i, this.position - i);
@@ -69,31 +69,27 @@ public class Tracker {
     }
 
     /**
-     * метод находит все заявки.
+     * Метод находит все заявки.
      * @return массив заявок.
      */
     public Item[] findAll() {
-        Item[] result = new Item[this.position];
-        for (int i = 0; i != this.position; i++) {
-            result[i] = this.items[i];
-        }
-        return result;
+        return Arrays.copyOf(this.items, this.position);
     }
 
     /**
-     * Длинна массива не универсальна.
+     * Метод ищет объекты в треке по имени.
      * @param key имя заявки.
      * @return массив заявок.
      */
     public Item[] findByName(String key) {
-        Item[] result = new Item[10];
+        Item[] result = new Item[this.position];
         int i = 0;
         for (Item item : items) {
             if (item != null && item.getName().equals(key)) {
                 result[i++] = item;
             }
         }
-        return result;
+        return Arrays.copyOf(result, --i);
     }
 
     /**
