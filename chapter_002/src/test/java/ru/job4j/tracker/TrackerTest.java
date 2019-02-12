@@ -10,11 +10,11 @@ public class TrackerTest {
     @Test
     public void whenReplaceNameThenReturnNewName() {
         Tracker tracker = new Tracker();
-        Item previous = new Item("test1","testDescription",123L);
+        Item previous = new Item("test1", "testDescription", 123L);
         // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
         tracker.add(previous);
         // Создаем новую заявку.
-        Item next = new Item("test2","testDescription2",1234L);
+        Item next = new Item("test2", "testDescription2", 1234L);
         // Проставляем старый id из previous, который был сгенерирован выше.
         next.setId(previous.getId());
         // Обновляем заявку в трекере.
@@ -42,7 +42,7 @@ public class TrackerTest {
     }
 
     @Test
-    public void whenFindAllThenReturnAllItems() {
+    public void whenGetAllThenReturnAllItems() {
         Tracker tracker = new Tracker();
         Item firstItem = new Item("test1", "testDescription1", 1L);
         Item secondItem = new Item("test2", "testDescription2", 2L);
@@ -50,7 +50,7 @@ public class TrackerTest {
         tracker.add(firstItem);
         tracker.add(secondItem);
         //находим все заявки в классе трекер и добавляем их в новый массив..
-        Item[] array = tracker.findAll();
+        Item[] array = tracker.getAll();
         //Проверяем, что ID заявок в классе трекер соотвествуют ID заявкам в новом массиве заявок.
         assertThat(firstItem.getId().equals(array[0].getId()), is(true));
         assertThat(secondItem.getId().equals(array[1].getId()), is(true));
@@ -88,5 +88,32 @@ public class TrackerTest {
         firstItem.setId("12345");
         //Сравниваем ссылки на объекты..
         assertThat(tracker.findById("12345").getName(), is("test1"));
+    }
+/**
+    @Test
+    public void whenAddCommentThen() {
+        Tracker tracker = new Tracker();
+        //Создаем три объекта, из них два с одинаковыми именами.
+        Item firstItem = new Item("test1", "testDescription1", 1L);
+        Item secondItem = new Item("test2", "testDescription2", 2L);
+        //Добавляем заявки в трекер.
+        tracker.add(firstItem);
+        tracker.add(secondItem);
+        firstItem.addComment("Обработана на отлично!");
+        //Сравниваем ссылки на объекты..
+        assertThat(tracker.findComment("Обработана").getComment(), is("Обработана на отлично!"));
+    }
+*/
+    @Test
+    public void whenFindByDescriptionThen() {
+        Tracker tracker = new Tracker();
+        //Создаем три объекта, из них два с одинаковыми именами.
+        Item firstItem = new Item("test1", "testDescription1", 1L);
+        Item secondItem = new Item("test2", "testDescription2", 2L);
+        //Добавляем заявки в трекер.
+        tracker.add(firstItem);
+        tracker.add(secondItem);
+        firstItem.setDescription("Первая заявка в трекере.");
+        assertThat(tracker.findByDescription("Первая").getDescription(), is("Первая заявка в трекере."));
     }
 }

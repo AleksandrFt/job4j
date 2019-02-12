@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Tracker {
 
-    private Item[] items = new Item[3];
+    private Item[] items = new Item[100];
     private static final Random RN = new Random();
     private int position = 0;
 
@@ -53,7 +53,7 @@ public class Tracker {
         for (int i = 0; i < this.position; i++) {
             if (this.items[i].getId().equals(id)) {
                 if (i == this.position - 1) {
-                    items[i] = null;
+                    this.items[i] = null;
                     this.position--;
                     result = true;
                     break;
@@ -73,7 +73,7 @@ public class Tracker {
      * Метод находит все заявки.
      * @return массив заявок.
      */
-    public Item[] findAll() {
+    public Item[] getAll() {
         return Arrays.copyOf(this.items, this.position);
     }
 
@@ -103,6 +103,22 @@ public class Tracker {
         for (Item item : items) {
             if (item != null && item.getId().equals(id)) {
                 result = item;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Метод ищет по описанию.
+     * @param word слово.
+     * @return item.
+     */
+    public Item findByDescription(String word) {
+        Item result = null;
+        for (Item item : items) {
+            if (item.getDescription().contains(word)) {
+                result = item;
+                break;
             }
         }
         return result;
