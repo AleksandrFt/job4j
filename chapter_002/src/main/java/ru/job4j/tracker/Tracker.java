@@ -90,7 +90,7 @@ public class Tracker {
                 result[i++] = item;
             }
         }
-        return Arrays.copyOf(result, --i);
+        return Arrays.copyOf(result, i);
     }
 
     /**
