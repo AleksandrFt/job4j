@@ -40,51 +40,19 @@ public class StartUI {
                 System.out.println("Заявка успешно добавлена : " + item.getName());
                 System.out.println("---------------------------------------------------------------");
             } else if (SHOW_ALL.equals(answer)) {
-                for (Item item : tracker.getAll()) {
-                    System.out.println("Имя : " + item.getName() + " Описание : " + item.getDescription() + " ID : " + item.getId());
-                }
-                System.out.println("---------------------------------------------------------------");
+                this.showAllItems();
             } else if (EDIT.equals(answer)) {
-                answer = this.input.ask("Введите ID заявки, которую хотите изменить : ");
-                if (tracker.findById(answer) != null) {
-                    if (tracker.replace(answer, this.createItem())) {
-                    System.out.println("Заявка успешно отредактирована");
-                    System.out.println("---------------------------------------------------------------");
-                    }
-                } else {
-                    System.out.println("Заявка с данным ID: " + answer + " - не найдена");
-                    System.out.println("---------------------------------------------------------------");
-                }
+                this.editItem();
             } else if (DELETE.equals(answer)) {
-                answer = this.input.ask("Введите ID заявки : ");
-                if (tracker.delete(answer)) {
-                    System.out.println("Заявка успешно удалена");
-                    System.out.println("---------------------------------------------------------------");
-                } else {
-                    System.out.println("Что то пошло не так, попробуйте еще раз");
-                    System.out.println("---------------------------------------------------------------");
-                }
+                this.deleteItem();
             } else if (FIND_BY_ID.equals(answer)) {
-                answer = this.input.ask("Введите ID заявки : ");
-                Item item = tracker.findById(answer);
-                System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
-                System.out.println("---------------------------------------------------------------");
+                this.findItemById();
             } else if (FIND_ALL_BY_NAME.equals(answer)) {
-                answer = this.input.ask("Введите имя заявки для поиска совпадений : ");
-                Item[] arrayByName = tracker.findByName(answer);
-                if (arrayByName.length != 0) {
-                    for (Item item : arrayByName) {
-                        System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
-                    }
-                } else {
-                    System.out.println("Ничего не найдено, попробуйте поискать что то еще");
-                    System.out.println("---------------------------------------------------------------");
-                    }
-                } else if (EXIT.equals(answer)) {
+                this.findAllItemsByName();
+            } else if (EXIT.equals(answer)) {
                 exit = true;
             } else {
-                System.out.println("Попробуйте ввести еще раз");
-                System.out.println("---------------------------------------------------------------");
+                this.wrongSelect();
             }
         }
     }
@@ -101,9 +69,63 @@ public class StartUI {
         return new Item(name, description);
     }
 
+    public void showAllItems() {
+        for (Item item : tracker.getAll()) {
+            System.out.println("Имя : " + item.getName() + " Описание : " + item.getDescription() + " ID : " + item.getId());
+            System.out.println("---------------------------------------------------------------");
+        }
+    }
+
+    public void editItem() {
+        String answer = this.input.ask("Введите ID заявки, которую хотите изменить : ");
+        if (tracker.replace(answer, this.createItem())) {
+            System.out.println("Заявка успешно отредактирована");
+            System.out.println("---------------------------------------------------------------");
+        } else {
+            System.out.println("Заявка с данным ID: " + answer + " - не найдена");
+            System.out.println("---------------------------------------------------------------");
+        }
+    }
+
+    public void deleteItem() {
+        String answer = this.input.ask("Введите ID заявки : ");
+        if (tracker.delete(answer)) {
+            System.out.println("Заявка успешно удалена");
+            System.out.println("---------------------------------------------------------------");
+        } else {
+            System.out.println("Что то пошло не так, попробуйте еще раз");
+            System.out.println("---------------------------------------------------------------");
+        }
+    }
+
+    public void findItemById() {
+        String answer = this.input.ask("Введите ID заявки : ");
+        Item item = tracker.findById(answer);
+        System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
+        System.out.println("---------------------------------------------------------------");
+    }
+
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
+    }
+
+    public void findAllItemsByName() {
+        String answer = this.input.ask("Введите имя заявки для поиска совпадений : ");
+        Item[] arrayByName = tracker.findByName(answer);
+        if (arrayByName.length != 0) {
+            for (Item item : arrayByName) {
+                System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
+            }
+        } else {
+            System.out.println("Ничего не найдено, попробуйте поискать что то еще");
+            System.out.println("---------------------------------------------------------------");
+        }
+    }
+
+    public void wrongSelect() {
+        System.out.println("Попробуйте ввести еще раз");
+        System.out.println("---------------------------------------------------------------");
     }
 }
