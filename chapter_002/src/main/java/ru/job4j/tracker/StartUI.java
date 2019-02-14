@@ -13,7 +13,7 @@ public class StartUI {
     public void init() {
         String name = input.ask("Please enter the task name. ");
         Tracker tracker = new Tracker();
-        tracker.add(new Item(name, "first desc", 1L));
+        tracker.add(new Item(name, "first desc"));
         for (Item item : tracker.getAll()) {
             System.out.println(item.getName());
         }
