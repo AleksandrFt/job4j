@@ -21,7 +21,8 @@ public class StartUI {
         "4. Удалить заявку.",
         "5. Найти заявку по ее ID",
         "6. Найти заявку по имени",
-        "0. Выйти из программы."
+        "0. Выйти из программы.",
+        "",
     };
 
     public StartUI(Input input, Tracker tracker) {
@@ -72,8 +73,8 @@ public class StartUI {
     public void showAllItems() {
         for (Item item : tracker.getAll()) {
             System.out.println("Имя : " + item.getName() + " Описание : " + item.getDescription() + " ID : " + item.getId());
-            System.out.println("---------------------------------------------------------------");
         }
+        System.out.println("---------------------------------------------------------------");
     }
 
     public void editItem() {
@@ -118,6 +119,7 @@ public class StartUI {
             for (Item item : arrayByName) {
                 System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
             }
+            System.out.println("---------------------------------------------------------------");
         } else {
             System.out.println("Ничего не найдено, попробуйте поискать что то еще");
             System.out.println("---------------------------------------------------------------");
