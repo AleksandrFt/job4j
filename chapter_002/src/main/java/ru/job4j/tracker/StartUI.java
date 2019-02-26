@@ -31,6 +31,15 @@ public class StartUI {
     }
 
     public void init() {
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            menu.select(Integer.valueOf(input.ask("Select:")));
+        } while (!"y".equals(this.input.ask("Exit?(y): ")));
+    }
+/**
+    public void init() {
         boolean exit = false;
         while (!exit) {
             this.showMenu();
@@ -99,25 +108,26 @@ public class StartUI {
         System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
     }
 
+     public void findAllItemsByName() {
+         String answer = this.input.ask("Введите имя заявки для поиска совпадений : ");
+         Item[] arrayByName = tracker.findByName(answer);
+         if (arrayByName.length != 0) {
+            for (Item item : arrayByName) {
+            System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
+                }
+            } else {
+             System.out.println("Ничего не найдено, попробуйте поискать что то еще");
+         }
+     }
+
+     public void wrongSelect() {
+     System.out.println("Попробуйте ввести еще раз");
+     }
+*/
+
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
-    }
-
-    public void findAllItemsByName() {
-        String answer = this.input.ask("Введите имя заявки для поиска совпадений : ");
-        Item[] arrayByName = tracker.findByName(answer);
-        if (arrayByName.length != 0) {
-            for (Item item : arrayByName) {
-                System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
-            }
-        } else {
-            System.out.println("Ничего не найдено, попробуйте поискать что то еще");
-        }
-    }
-
-    public void wrongSelect() {
-        System.out.println("Попробуйте ввести еще раз");
     }
 }
