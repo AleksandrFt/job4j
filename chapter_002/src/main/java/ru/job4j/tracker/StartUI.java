@@ -39,7 +39,6 @@ public class StartUI {
             if (ADD.equals(answer)) {
                 Item item = tracker.add(this.createItem());
                 System.out.println("Заявка успешно добавлена : " + item.getName());
-                System.out.println("---------------------------------------------------------------");
             } else if (SHOW_ALL.equals(answer)) {
                 this.showAllItems();
             } else if (EDIT.equals(answer)) {
@@ -74,17 +73,14 @@ public class StartUI {
         for (Item item : tracker.getAll()) {
             System.out.println("Имя : " + item.getName() + " Описание : " + item.getDescription() + " ID : " + item.getId());
         }
-        System.out.println("---------------------------------------------------------------");
     }
 
     public void editItem() {
         String answer = this.input.ask("Введите ID заявки, которую хотите изменить : ");
         if (tracker.replace(answer, this.createItem())) {
             System.out.println("Заявка успешно отредактирована");
-            System.out.println("---------------------------------------------------------------");
         } else {
             System.out.println("Заявка с данным ID: " + answer + " - не найдена");
-            System.out.println("---------------------------------------------------------------");
         }
     }
 
@@ -92,10 +88,8 @@ public class StartUI {
         String answer = this.input.ask("Введите ID заявки : ");
         if (tracker.delete(answer)) {
             System.out.println("Заявка успешно удалена");
-            System.out.println("---------------------------------------------------------------");
         } else {
             System.out.println("Что то пошло не так, попробуйте еще раз");
-            System.out.println("---------------------------------------------------------------");
         }
     }
 
@@ -103,7 +97,6 @@ public class StartUI {
         String answer = this.input.ask("Введите ID заявки : ");
         Item item = tracker.findById(answer);
         System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
-        System.out.println("---------------------------------------------------------------");
     }
 
     public static void main(String[] args) {
@@ -119,15 +112,12 @@ public class StartUI {
             for (Item item : arrayByName) {
                 System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
             }
-            System.out.println("---------------------------------------------------------------");
         } else {
             System.out.println("Ничего не найдено, попробуйте поискать что то еще");
-            System.out.println("---------------------------------------------------------------");
         }
     }
 
     public void wrongSelect() {
         System.out.println("Попробуйте ввести еще раз");
-        System.out.println("---------------------------------------------------------------");
     }
 }
