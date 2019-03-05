@@ -4,26 +4,9 @@ package ru.job4j.tracker;
 
 public class StartUI {
 
-    private static final String EXIT = "0";
-    private static final String ADD = "1";
-    private static final String SHOW_ALL = "2";
-    private static final String EDIT = "3";
-    private static final String DELETE = "4";
-    private static final String FIND_BY_ID = "5";
-    private static final String FIND_ALL_BY_NAME = "6";
+    private int[] range;
     private final Input input;
     private final Tracker tracker;
-
-    String[] menu = {
-        "1. Создать новую заявку.",
-        "2. Показать все заявки.",
-        "3. Отредактировать заявку.",
-        "4. Удалить заявку.",
-        "5. Найти заявку по ее ID",
-        "6. Найти заявку по имени",
-        "0. Выйти из программы.",
-        "",
-    };
 
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
@@ -33,100 +16,18 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions();
+        range = new int[menu.getActionLength()];
+        for (int i = 0; i < range.length; i++) {
+            range[i] = i;
+        }
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("Select:")));
+            menu.select(input.ask("Select: ", range));
         } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
-/**
-    public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Выберите пункт меню : ");
-
-            if (ADD.equals(answer)) {
-                Item item = tracker.add(this.createItem());
-                System.out.println("Заявка успешно добавлена : " + item.getName());
-            } else if (SHOW_ALL.equals(answer)) {
-                this.showAllItems();
-            } else if (EDIT.equals(answer)) {
-                this.editItem();
-            } else if (DELETE.equals(answer)) {
-                this.deleteItem();
-            } else if (FIND_BY_ID.equals(answer)) {
-                this.findItemById();
-            } else if (FIND_ALL_BY_NAME.equals(answer)) {
-                this.findAllItemsByName();
-            } else if (EXIT.equals(answer)) {
-                exit = true;
-            } else {
-                this.wrongSelect();
-            }
-        }
-    }
-
-    public void showMenu() {
-        for (String string : menu) {
-            System.out.println(string);
-        }
-    }
-
-    public Item createItem() {
-        String name = this.input.ask("Введите название новой заявки : ");
-        String description = this.input.ask("Введите описание новой заявки : ");
-        return new Item(name, description);
-    }
-
-    public void showAllItems() {
-        for (Item item : tracker.getAll()) {
-            System.out.println("Имя : " + item.getName() + " Описание : " + item.getDescription() + " ID : " + item.getId());
-        }
-    }
-
-    public void editItem() {
-        String answer = this.input.ask("Введите ID заявки, которую хотите изменить : ");
-        if (tracker.replace(answer, this.createItem())) {
-            System.out.println("Заявка успешно отредактирована");
-        } else {
-            System.out.println("Заявка с данным ID: " + answer + " - не найдена");
-        }
-    }
-
-    public void deleteItem() {
-        String answer = this.input.ask("Введите ID заявки : ");
-        if (tracker.delete(answer)) {
-            System.out.println("Заявка успешно удалена");
-        } else {
-            System.out.println("Что то пошло не так, попробуйте еще раз");
-        }
-    }
-
-    public void findItemById() {
-        String answer = this.input.ask("Введите ID заявки : ");
-        Item item = tracker.findById(answer);
-        System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
-    }
-
-     public void findAllItemsByName() {
-         String answer = this.input.ask("Введите имя заявки для поиска совпадений : ");
-         Item[] arrayByName = tracker.findByName(answer);
-         if (arrayByName.length != 0) {
-            for (Item item : arrayByName) {
-            System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
-                }
-            } else {
-             System.out.println("Ничего не найдено, попробуйте поискать что то еще");
-         }
-     }
-
-     public void wrongSelect() {
-     System.out.println("Попробуйте ввести еще раз");
-     }
-*/
 
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
     }
