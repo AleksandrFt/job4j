@@ -29,7 +29,7 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemSameName() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"1", "первая заявка", "первое описание", "0"});
+        Input input = new StubInput(new String[]{"1", "первая заявка", "первое описание", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.getAll()[0].getName(), is("первая заявка"));
     }
@@ -38,7 +38,7 @@ public class StartUITest {
     public void whenUserDeleteFirstItemThenTrackerDropFirstItem() {
         Tracker tracker = new Tracker();
         tracker.add(new Item("первая заявка", "первое описание")).setId("12345");
-        Input input = new StubInput(new String[]{"1", "вторая заявка", "второе описание", "4", "12345", "0"});
+        Input input = new StubInput(new String[]{"1", "вторая заявка", "второе описание", "", "4", "12345", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.getAll()[0].getName(), is("вторая заявка"));
     }
@@ -47,8 +47,8 @@ public class StartUITest {
     public void whenUserEditItemThenItemChangeNameAndDescription() {
         Tracker tracker = new Tracker();
         tracker.add(new Item("первая заявка", "первое описание")).setId("12345");
-        Input input = new StubInput(new String[]{"1", "вторая заявка", "второе описание",
-                "3", "12345", "новое имя первой заявки", "новое описание первой заявки", "0"});
+        Input input = new StubInput(new String[]{"1", "вторая заявка", "второе описание", "",
+                "3", "12345", "новое имя первой заявки", "новое описание первой заявки", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.getAll()[0].getName(), is("новое имя первой заявки"));
     }
@@ -58,11 +58,11 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         tracker.add(new Item("первая заявка", "первое описание")).setId("12345");
         tracker.add(new Item("вторая заявка", "второе описание")).setId("67890");
-        Input input = new StubInput(new String[]{"2", "0"});
+        Input input = new StubInput(new String[]{"2", "y"});
         new StartUI(input, tracker).init();
         String string = new String(out.toByteArray());
-        assertTrue(string.contains("Имя : первая заявка Описание : первое описание ID : 12345")
-                && string.contains("Имя : вторая заявка Описание : второе описание ID : 67890")
+        assertTrue(string.contains("первая заявка первое описание 12345")
+                && string.contains("вторая заявка второе описание 67890")
         );
     }
 
@@ -70,7 +70,7 @@ public class StartUITest {
     public void whenUserChoseFindById() {
         Tracker tracker = new Tracker();
         tracker.add(new Item("первая заявка", "первое описание")).setId("12345");
-        Input input = new StubInput(new String[]{"5", "12345", "0"});
+        Input input = new StubInput(new String[]{"5", "12345", "y"});
         new StartUI(input, tracker).init();
         String string = new String(out.toByteArray());
         assertTrue(string.contains(tracker.getAll()[0].getName())
@@ -83,7 +83,7 @@ public class StartUITest {
         tracker.add(new Item("первая", "первое описание")).setId("12345");
         tracker.add(new Item("вторая", "второе описание")).setId("54321");
         tracker.add(new Item("первая", "третье описание")).setId("67890");
-        Input input = new StubInput(new String[]{"6", "первая", "0"});
+        Input input = new StubInput(new String[]{"6", "первая", "y"});
         new StartUI(input, tracker).init();
         String string = new String(out.toByteArray());
         assertTrue(string.contains("12345")
