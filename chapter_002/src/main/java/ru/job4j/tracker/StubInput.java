@@ -13,6 +13,21 @@ public class StubInput implements Input {
     }
 
     public int ask(String question, int[] range) {
-        return Integer.parseInt(answers[position++]);
+        return Integer.valueOf(ask(question));
+
+
+/*        boolean exist = false;
+        for (int value : range) {
+            if (key == value) {
+                exist = true;
+                break;
+            }
+        }
+        if (exist) {
+            return key;
+        } else {
+            throw new MenuOutException("Out of menu range");
+        }*/
     }
+
 }
