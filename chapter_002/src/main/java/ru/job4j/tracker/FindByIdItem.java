@@ -11,7 +11,7 @@ public class FindByIdItem implements UserAction {
     public void execute(Input input, Tracker tracker) {
         String answer = input.ask("Введите ID заявки : ");
         Item item = tracker.findById(answer);
-        System.out.printf("%s %s %s \n", item.getName(), item.getDescription(), item.getId());
+        System.out.printf("%s %s %s%n", item.getName(), item.getDescription(), item.getId());
     }
 
     @Override

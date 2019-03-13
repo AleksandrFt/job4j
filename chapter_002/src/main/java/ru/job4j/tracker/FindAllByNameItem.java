@@ -13,7 +13,7 @@ public class FindAllByNameItem implements UserAction {
         Item[] arrayByName = tracker.findByName(answer);
         if (arrayByName.length != 0) {
             for (Item item : arrayByName) {
-                System.out.printf("%s %s %s", item.getName(), item.getDescription(), item.getId());
+                System.out.printf("%s %s %s%n", item.getName(), item.getDescription(), item.getId());
             }
         } else {
             System.out.println("Ничего не найдено, попробуйте поискать что то еще");

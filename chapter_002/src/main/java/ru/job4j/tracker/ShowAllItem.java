@@ -12,7 +12,7 @@ public class ShowAllItem implements UserAction {
     @Override
     public void execute(Input input, Tracker tracker) {
         for (Item item : tracker.getAll()) {
-            System.out.printf("%s %s %s \n", item.getName(), item.getDescription(), item.getId());
+            System.out.printf("%s %s %s%n", item.getName(), item.getDescription(), item.getId());
         }
     }
 

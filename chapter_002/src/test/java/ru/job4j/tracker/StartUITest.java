@@ -61,8 +61,17 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"2", "y"});
         new StartUI(input, tracker).init();
         String string = new String(out.toByteArray());
-        assertTrue(string.contains("первая заявка первое описание 12345")
-                && string.contains("вторая заявка второе описание 67890")
+        assertThat(string, is(String.join(System.getProperty("line.separator"),
+                "0. Exit program.",
+                "1. Add new item.",
+                "2. Show all items.",
+                "3. Edit item.",
+                "4. Delete Item by ID.",
+                "5. Find by ID.",
+                "6. Find all items by name.",
+                "первая заявка первое описание 12345",
+                "вторая заявка второе описание 67890",
+                ""))
         );
     }
 
@@ -73,7 +82,16 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"5", "12345", "y"});
         new StartUI(input, tracker).init();
         String string = new String(out.toByteArray());
-        assertTrue(string.contains(tracker.getAll()[0].getName())
+        assertThat(string, is(String.join(System.getProperty("line.separator"),
+                "0. Exit program.",
+                "1. Add new item.",
+                "2. Show all items.",
+                "3. Edit item.",
+                "4. Delete Item by ID.",
+                "5. Find by ID.",
+                "6. Find all items by name.",
+                "первая заявка первое описание 12345",
+                ""))
         );
     }
 
@@ -86,8 +104,17 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"6", "первая", "y"});
         new StartUI(input, tracker).init();
         String string = new String(out.toByteArray());
-        assertTrue(string.contains("12345")
-                && string.contains("67890")
+        assertThat(string, is(String.join(System.getProperty("line.separator"),
+                "0. Exit program.",
+                "1. Add new item.",
+                "2. Show all items.",
+                "3. Edit item.",
+                "4. Delete Item by ID.",
+                "5. Find by ID.",
+                "6. Find all items by name.",
+                "первая первое описание 12345",
+                "первая третье описание 67890",
+                ""))
         );
     }
 }
