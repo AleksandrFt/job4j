@@ -16,41 +16,4 @@ public abstract class Figure {
     public Cell getPosition() {
         return position;
     }
-
-    public Cell[] getWay(Cell source, Cell dest) {
-        int index = 0;
-        int offSetX = dest.x - source.x;
-        int offSetY = dest.y - source.y;
-        Cell[] nextStep = new Cell[Math.abs(offSetX)];
-        int cellDestX = source.x;
-        int cellDestY = source.y;
-        if(offSetX != 0 && offSetY != 0) {
-            if (offSetX > 0 && offSetY > 0) {
-                while (cellDestX != dest.x && cellDestY != dest.y) {
-                    cellDestX++;
-                    cellDestY++;
-                    nextStep[index++] = Cell.findByXY(cellDestX, cellDestY);
-                }
-            } else if(offSetX < 0 && offSetY < 0) {
-                while (cellDestX != dest.x && cellDestY != dest.y) {
-                    cellDestX--;
-                    cellDestY--;
-                    nextStep[index++] = Cell.findByXY(cellDestX, cellDestY);
-                }
-            } else if(offSetX < 0 && offSetY > 0) {
-                while (cellDestX != dest.x && cellDestY != dest.y) {
-                    cellDestX--;
-                    cellDestY++;
-                    nextStep[index++] = Cell.findByXY(cellDestX, cellDestY);
-                }
-            } else if(offSetX > 0 && offSetY < 0) {
-                while (cellDestX != dest.x && cellDestY != dest.y) {
-                    cellDestX++;
-                    cellDestY--;
-                    nextStep[index++] = Cell.findByXY(cellDestX, cellDestY);
-                }
-            }
-        }
-        return nextStep;
-    }
 }
