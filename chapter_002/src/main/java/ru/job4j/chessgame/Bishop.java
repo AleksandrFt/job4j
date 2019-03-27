@@ -4,7 +4,7 @@ import ru.job4j.chessgame.exception.*;
 
 public class Bishop extends Figure {
 
-    public Bishop(final Cell position) {
+    Bishop(final Cell position) {
         super(position);
     }
 

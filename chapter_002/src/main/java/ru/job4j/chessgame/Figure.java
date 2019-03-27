@@ -3,7 +3,7 @@ package ru.job4j.chessgame;
 import ru.job4j.chessgame.exception.ImpossibleMoveException;
 
 public abstract class Figure {
-    public final Cell position;
+    private final Cell position;
 
     Figure(Cell position) {
         this.position = position;

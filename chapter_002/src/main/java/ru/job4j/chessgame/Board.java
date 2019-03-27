@@ -4,7 +4,7 @@ import ru.job4j.chessgame.exception.*;
 
 public class Board {
 
-    Figure[] figures = new Figure[32];
+    private Figure[] figures = new Figure[32];
     private int index = 0;
 
     /**
