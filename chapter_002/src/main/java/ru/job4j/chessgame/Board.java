@@ -27,24 +27,25 @@ public class Board {
         boolean result = false;
         int index = findByCell(source);
         try {
-            if (index != -1 && findByCell(dest) == -1) {
+            if (index == -1) {
+                throw new FigureNotFoundException("Клетка пустая.");
+            }
+            if (findByCell(dest) == -1) {
                 Cell[] steps = figures[index].way(figures[index].getPosition(), dest);
                 if (checkWay(steps)) {
                     figures[index] = figures[index].copy(steps[steps.length - 1]);
                     result = true;
                 }
-            } else if (index == -1) {
-                throw new FigureNotFoundException("Клетка пустая.");
-                }
-        } catch(FigureNotFoundException fnf){
-            System.out.println("Клетка пустая.");
-        } catch(ImpossibleMoveException ime){
-            System.out.println("Этот ход сделать невозможно.");
-        } catch(OccupiedWayException owe){
-            System.out.println("Путь занят.");
-        }
-            return result;
-        }
+            }
+            } catch(FigureNotFoundException fnf){
+                System.out.println("Клетка пустая.");
+            } catch(ImpossibleMoveException ime){
+                System.out.println("Этот ход сделать невозможно.");
+            } catch(OccupiedWayException owe){
+                System.out.println("Путь занят.");
+            }
+        return result;
+    }
 
     /**
      * Метод ищет в массиве фугур совпадения, не занята ли клетка одной из фигур.
