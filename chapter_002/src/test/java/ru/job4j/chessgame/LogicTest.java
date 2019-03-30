@@ -73,8 +73,8 @@ public class LogicTest {
     public void whenTheCellDestinationIsBusy() {
         Logic logic = new Logic();
         //Создаем фигуру Слон в клетке D4.
-        Figure figure = new BishopBlack(D4);
-        logic.add(figure);
+        BishopBlack bishopBlack = new BishopBlack(D4);
+        logic.add(bishopBlack);
         //Пробуем сделать ход по диагонали через стоящую на пути фигуру..
         logic.move(D3, C5);
         String string = new String(out.toByteArray());
