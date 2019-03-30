@@ -10,10 +10,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 import static ru.job4j.chessgame.Cell.*;
+import static ru.job4j.chessgame.Cell.C5;
 
-public class BoardTest {
+public class LogicTest {
 
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -32,23 +33,23 @@ public class BoardTest {
 
     @Test
     public void whenBishopRightMove() {
-        Board board = new Board();
+        Logic logic = new Logic();
         //Создаем фигуру Слон в клетке D4.
-        BishopBlack bishopBlack = new BishopBlack(D4);
-        board.add(bishopBlack);
+        Figure figure = new BishopBlack(D4);
+        logic.add(figure);
         //Пробуем сделать ход по диагонали.
-        board.move(D4, B6);
+        logic.move(D4, B6);
         //Проверяем, что фигура в клетке назначения под индексом 0 в массиве фигур.
-        assertThat(board.findByCell(B6), is(0));
+        assertThat(logic.findBy(B6), is(0));
     }
 
     @Test
     public void whenBishopWrongMove() {
-        Board board = new Board();
+        Logic logic = new Logic();
         //Создаем фигуру Слон в клетке D4.
-        board.add(new BishopBlack(D4));
+        logic.add(new BishopBlack(D4));
         //Пробуем сделать ход по диагонали.
-        board.move(D4, D3);
+        logic.move(D4, D3);
         String string = new String(out.toByteArray());
         //Получаем исключение.
         assertThat(string, is("Этот ход сделать невозможно." + System.lineSeparator()));
@@ -56,13 +57,13 @@ public class BoardTest {
 
     @Test
     public void whenTheWayIsBusy() {
-        Board board = new Board();
+        Logic logic = new Logic();
         //Создаем фигуру Слон в клетке D4.
-        board.add(new BishopBlack(D4));
+        logic.add(new BishopBlack(D4));
         //Добавляем вторую фигуру, которая будет стоять на пути первой.
-        board.add(new BishopBlack(C5));
+        logic.add(new BishopBlack(C5));
         //Пробуем сделать ход по диагонали через стоящую на пути фигуру..
-        board.move(D4, B6);
+        logic.move(D4, B6);
         String string = new String(out.toByteArray());
         //Получаем исключение.
         assertThat(string, is("Путь занят." + System.lineSeparator()));
@@ -70,12 +71,12 @@ public class BoardTest {
 
     @Test
     public void whenTheCellDestinationIsBusy() {
-        Board board = new Board();
+        Logic logic = new Logic();
         //Создаем фигуру Слон в клетке D4.
-        BishopBlack bishopBlack = new BishopBlack(D4);
-        board.add(bishopBlack);
+        Figure figure = new BishopBlack(D4);
+        logic.add(figure);
         //Пробуем сделать ход по диагонали через стоящую на пути фигуру..
-        board.move(D3, C5);
+        logic.move(D3, C5);
         String string = new String(out.toByteArray());
         //Получаем исключение.
         assertThat(string, is("Клетка пустая." + System.lineSeparator()));

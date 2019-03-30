@@ -1,10 +1,12 @@
-package ru.job4j.chessgame;
+package ru.job4j.chessgame.figures.white;
 
-import ru.job4j.chessgame.exception.*;
+import ru.job4j.chessgame.Cell;
+import ru.job4j.chessgame.Figure;
+import ru.job4j.chessgame.exception.ImpossibleMoveException;
 
-public class Bishop extends Figure {
+public class BishopWhite extends Figure {
 
-    Bishop(final Cell position) {
+    public BishopWhite(final Cell position) {
         super(position);
     }
 
@@ -21,8 +23,8 @@ public class Bishop extends Figure {
         if (!(Math.abs(dest.x - source.x) == Math.abs(dest.y - source.y))) {
             throw new ImpossibleMoveException("Ход сделать невозможно.");
         }
-        int wayCellLength = Math.abs(source.x - dest.x) >= Math.abs(source.y - dest.y) ? Math.abs(source.x - dest.x) :
-                Math.abs(source.y - dest.y);
+        int wayCellLength = Math.abs(source.x - dest.x) >= Math.abs(source.y - dest.y)
+                ? Math.abs(source.x - dest.x) : Math.abs(source.y - dest.y);
         Cell[] steps = new Cell[wayCellLength];
         int osX = source.x;
         int osY = source.y;
@@ -42,6 +44,6 @@ public class Bishop extends Figure {
      * @return копия фигуры с новым параметром
      */
     public Figure copy(Cell dest) {
-        return new Bishop(dest);
+        return new BishopWhite(dest);
     }
 }
