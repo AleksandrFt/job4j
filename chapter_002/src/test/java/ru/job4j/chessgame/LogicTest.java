@@ -3,7 +3,6 @@ package ru.job4j.chessgame;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.job4j.chessgame.figures.white.*;
 import ru.job4j.chessgame.figures.black.*;
 
 import java.io.ByteArrayOutputStream;

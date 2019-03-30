@@ -21,6 +21,5 @@ public abstract class Figure {
         return String.format(
                 "%s.png", this.getClass().getSimpleName()
         );
-
     }
 }
