@@ -2,7 +2,7 @@ package ru.job4j.chessgame;
 
 import ru.job4j.chessgame.exception.*;
 
-public class Board {
+public class Logic {
 
     private Figure[] figures = new Figure[32];
     private int index = 0;
