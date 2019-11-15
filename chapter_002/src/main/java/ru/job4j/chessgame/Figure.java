@@ -5,7 +5,7 @@ import ru.job4j.chessgame.exception.ImpossibleMoveException;
 public abstract class Figure {
     private final Cell position;
 
-    Figure(Cell position) {
+    public Figure(Cell position) {
         this.position = position;
     }
 
@@ -15,5 +15,11 @@ public abstract class Figure {
 
     public Cell getPosition() {
         return position;
+    }
+
+    String icon() {
+        return String.format(
+                "%s.png", this.getClass().getSimpleName()
+        );
     }
 }
