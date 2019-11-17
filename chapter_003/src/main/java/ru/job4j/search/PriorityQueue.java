@@ -8,11 +8,26 @@ public class PriorityQueue {
 
     public void put(Task task) {
         if (tasks.size() == 0) {
-            tasks.add(task);
+            tasks.addFirst(task);
         }
-        for (int x = 0; x < tasks.size(); x++) {
-            if (task.getPriority() < tasks.get(x).getPriority()) {
+        if (tasks.size() == 1) {
+            if (task.getPriority() < tasks.get(0).getPriority()) {
+                tasks.addFirst(task);
+            } else {
+                tasks.addLast(task);
+            }
+        }
+
+        for (int x = 1; x < tasks.size(); x++) {
+            if (task.getPriority() < tasks.get(x - 1).getPriority()) {
+                tasks.addFirst(task);
+                break;
+            } else if (task.getPriority() > tasks.get(x - 1).getPriority()
+                    && task.getPriority() < tasks.get(x).getPriority()) {
                 tasks.add(x, task);
+                break;
+            } else if (task.getPriority() > tasks.get(x).getPriority() && x == tasks.size() - 1) {
+                tasks.addLast(task);
                 break;
             }
         }
