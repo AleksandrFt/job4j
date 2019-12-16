@@ -27,12 +27,10 @@ public class ConvertList2Array {
 
     public List<Integer> convert(List<int[]> list) {
         List<Integer> result = new ArrayList<>();
-        Iterator<int[]> it = list.iterator();
 
-        while(it.hasNext()) {
-            int[] elem = it.next();
-            for (int i = 0; i < elem.length; i++) {
-                result.add(elem[i]);
+        for (int[] element : list) {
+            for (int i : element) {
+                result.add(i);
             }
         }
         return result;
