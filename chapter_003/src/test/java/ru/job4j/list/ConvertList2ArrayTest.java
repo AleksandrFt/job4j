@@ -26,7 +26,7 @@ public class ConvertList2ArrayTest {
         listInteger.add(new int[]{3, 4, 5, 6});
 
         List<Integer> result = list.convert(listInteger);
-        List<Integer> expect = new ArrayList();
+        List<Integer> expect = new ArrayList<>();
         expect.add(1);
         expect.add(2);
         expect.add(3);
