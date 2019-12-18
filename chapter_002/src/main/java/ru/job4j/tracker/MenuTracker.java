@@ -6,7 +6,7 @@ public class MenuTracker {
 
     private Input input;
     private Tracker tracker;
-    private List<UserAction> actions = new ArrayList();
+    private ArrayList<UserAction> actions = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;

@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -50,10 +53,10 @@ public class TrackerTest {
         tracker.add(firstItem);
         tracker.add(secondItem);
         //находим все заявки в классе трекер и добавляем их в новый массив..
-        Item[] array = tracker.getAll();
+        ArrayList<Item> array = tracker.getAll();
         //Проверяем, что ID заявок в классе трекер соотвествуют ID заявкам в новом массиве заявок.
-        assertThat(firstItem.getId().equals(array[0].getId()), is(true));
-        assertThat(secondItem.getId().equals(array[1].getId()), is(true));
+        assertThat(firstItem.getId().equals(array.get(0).getId()), is(true));
+        assertThat(secondItem.getId().equals(array.get(1).getId()), is(true));
     }
 
     @Test
@@ -68,9 +71,9 @@ public class TrackerTest {
         tracker.add(secondItem);
         tracker.add(thirdItem);
         //Находим заявку по имени.
-        Item[] array = tracker.findByName("test2");
+        ArrayList<Item> array = tracker.findByName("test2");
         //Проверяем, что ID второя и третьей заявки в новом массиве эквивалентны ID первой и второй завки в новом массиве.
-        assertThat(secondItem.getId().equals(array[0].getId()), is(true));
+        assertThat(secondItem.getId().equals(array.get(0).getId()), is(true));
         //Проверяем по именам.
         assertThat(thirdItem.getName(), is("test2"));
     }
