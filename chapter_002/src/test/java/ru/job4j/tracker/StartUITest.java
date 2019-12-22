@@ -31,7 +31,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"1", "первая заявка", "первое описание", "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[0].getName(), is("первая заявка"));
+        assertThat(tracker.getAll().get(0).getName(), is("первая заявка"));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class StartUITest {
         tracker.add(new Item("первая заявка", "первое описание")).setId("12345");
         Input input = new StubInput(new String[]{"1", "вторая заявка", "второе описание", "", "4", "12345", "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[0].getName(), is("вторая заявка"));
+        assertThat(tracker.getAll().get(0).getName(), is("вторая заявка"));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"1", "вторая заявка", "второе описание", "",
                 "3", "12345", "новое имя первой заявки", "новое описание первой заявки", "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[0].getName(), is("новое имя первой заявки"));
+        assertThat(tracker.getAll().get(0).getName(), is("новое имя первой заявки"));
     }
 
     @Test
