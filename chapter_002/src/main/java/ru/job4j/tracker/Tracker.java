@@ -11,7 +11,6 @@ public class Tracker {
 
     private ArrayList<Item> items = new ArrayList<>();
     private static final Random RN = new Random();
-    private int position = 0;
 
     /**
      * Метод генерирует ID заявки и добавляет ее в трекер.
