@@ -3,6 +3,7 @@ package ru.job4j.tracker;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -104,5 +105,37 @@ public class TrackerTest {
         tracker.add(secondItem);
         firstItem.setDescription("Первая заявка в трекере.");
         assertThat(tracker.findByDescription("Первая").getDescription(), is("Первая заявка в трекере."));
+    }
+
+    @Test
+    public void sortByNameItem() {
+        Tracker tracker = new Tracker();
+        Item firstItem = (new Item("test3", "testDescription3"));
+        Item secondItem = (new Item("test1", "testDescription1"));
+        Item thirdItem = (new Item("test2", "testDescription2"));
+        tracker.add(firstItem).setId("12345");
+        tracker.add(secondItem).setId("67890");
+        tracker.add(thirdItem).setId("54321");
+        ArrayList<Item> items = tracker.getAll();
+        Collections.sort(items, new SortByNameItem());
+        for(Item item : items) {
+            System.out.println(item);
+        }
+    }
+
+    @Test
+    public void sortByNameItemReverse() {
+        Tracker tracker = new Tracker();
+        Item firstItem = (new Item("test3", "testDescription3"));
+        Item secondItem = (new Item("test1", "testDescription1"));
+        Item thirdItem = (new Item("test2", "testDescription2"));
+        tracker.add(firstItem).setId("12345");
+        tracker.add(secondItem).setId("67890");
+        tracker.add(thirdItem).setId("54321");
+        ArrayList<Item> items = tracker.getAll();
+        Collections.sort(items, new SortByNameItemReverse());
+        for(Item item : items) {
+            System.out.println(item);
+        }
     }
 }

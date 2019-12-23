@@ -64,7 +64,6 @@ public class Tracker {
      * @return массив заявок.
      */
     public ArrayList<Item> getAll() {
-        Collections.sort(items, new SortByNameItem());
         return items;
     }
 

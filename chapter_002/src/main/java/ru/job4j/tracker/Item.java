@@ -39,4 +39,9 @@ public class Item {
     public void setId(String id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return this.name + " " + this.description + " " + this.id;
+    }
 }
