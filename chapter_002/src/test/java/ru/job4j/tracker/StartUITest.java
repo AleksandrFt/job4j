@@ -5,6 +5,7 @@ import org.junit.After;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Collections;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -114,6 +115,62 @@ public class StartUITest {
                 "6. Find all items by name.",
                 "первая первое описание 12345",
                 "первая третье описание 67890",
+                ""))
+        );
+    }
+
+    @Test
+    public void sortByNameItem() {
+        Tracker tracker = new Tracker();
+        Item firstItem = (new Item("test3", "testDescription3"));
+        Item secondItem = (new Item("test1", "testDescription1"));
+        Item thirdItem = (new Item("test2", "testDescription2"));
+        tracker.add(firstItem).setId("12345");
+        tracker.add(secondItem).setId("67890");
+        tracker.add(thirdItem).setId("54321");
+
+        Input input = new StubInput(new String[]{"2", "y"});
+        new StartUI(input, tracker).init();
+        String string = new String(out.toByteArray());
+        assertThat(string, is(String.join(System.getProperty("line.separator"),
+                "0. Exit program.",
+                "1. Add new item.",
+                "2. Show all items.",
+                "3. Edit item.",
+                "4. Delete Item by ID.",
+                "5. Find by ID.",
+                "6. Find all items by name.",
+                "test1 testDescription1 67890",
+                "test2 testDescription2 54321",
+                "test3 testDescription3 12345",
+                ""))
+        );
+    }
+
+    @Test
+    public void sortByNameItemReverse() {
+        Tracker tracker = new Tracker();
+        Item firstItem = (new Item("test3", "testDescription3"));
+        Item secondItem = (new Item("test1", "testDescription1"));
+        Item thirdItem = (new Item("test2", "testDescription2"));
+        tracker.add(firstItem).setId("12345");
+        tracker.add(secondItem).setId("67890");
+        tracker.add(thirdItem).setId("54321");
+
+        Input input = new StubInput(new String[]{"2", "y"});
+        new StartUI(input, tracker).init();
+        String string = new String(out.toByteArray());
+        assertThat(string, is(String.join(System.getProperty("line.separator"),
+                "0. Exit program.",
+                "1. Add new item.",
+                "2. Show all items.",
+                "3. Edit item.",
+                "4. Delete Item by ID.",
+                "5. Find by ID.",
+                "6. Find all items by name.",
+                "test3 testDescription3 12345",
+                "test2 testDescription2 54321",
+                "test1 testDescription1 67890",
                 ""))
         );
     }
