@@ -3,6 +3,7 @@ package ru.job4j.tracker;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import static org.hamcrest.core.Is.is;
@@ -118,17 +119,8 @@ public class TrackerTest {
         tracker.add(thirdItem).setId("456");
         ArrayList<Item> items = tracker.getAll();
         Collections.sort(items, new SortByNameItem());
-        Tracker tracker2 = new Tracker();
-        Item firstItemSort = (new Item("test1", "testDescription1"));
-        Item secondItemSort = (new Item("test2", "testDescription2"));
-        Item thirdItemSort = (new Item("test3", "testDescription3"));
-        tracker2.add(firstItemSort).setId("123");
-        tracker2.add(secondItemSort).setId("456");
-        tracker2.add(thirdItemSort).setId("789");
-        ArrayList<Item> items2 = tracker2.getAll();
-        assertThat(items.get(0).getName(), is(items2.get(0).getName()));
-        assertThat(items.get(1).getName(), is(items2.get(1).getName()));
-        assertThat(items.get(2).getName(), is(items2.get(2).getName()));
+        ArrayList<Item> arrayList = new ArrayList<>(Arrays.asList(secondItem, firstItem, thirdItem));
+        assertEquals(items, arrayList);
     }
 
     @Test
@@ -137,21 +129,12 @@ public class TrackerTest {
         Item firstItem = (new Item("test2", "testDescription2"));
         Item secondItem = (new Item("test1", "testDescription1"));
         Item thirdItem = (new Item("test3", "testDescription3"));
-        tracker.add(firstItem).setId("789");
+        tracker.add(firstItem).setId("456");
         tracker.add(secondItem).setId("123");
-        tracker.add(thirdItem).setId("456");
+        tracker.add(thirdItem).setId("789");
         ArrayList<Item> items = tracker.getAll();
         Collections.sort(items, new SortByNameItemReverse());
-        Tracker tracker2 = new Tracker();
-        Item firstItemSort = (new Item("test3", "testDescription3"));
-        Item secondItemSort = (new Item("test2", "testDescription2"));
-        Item thirdItemSort = (new Item("test1", "testDescription1"));
-        tracker2.add(firstItemSort).setId("789");
-        tracker2.add(secondItemSort).setId("456");
-        tracker2.add(thirdItemSort).setId("123");
-        ArrayList<Item> items2 = tracker2.getAll();
-        assertThat(items.get(0).getName(), is(items2.get(0).getName()));
-        assertThat(items.get(1).getName(), is(items2.get(1).getName()));
-        assertThat(items.get(2).getName(), is(items2.get(2).getName()));
+        ArrayList<Item> arrayList = new ArrayList<>(Arrays.asList(thirdItem, firstItem, secondItem));
+        assertEquals(items, arrayList);
     }
 }
