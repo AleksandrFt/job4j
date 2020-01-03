@@ -19,7 +19,7 @@ public class StringCompareTest {
                 "Ivanov"
         );
         assertThat(rst, is(0));
-
+/*
         System.out.println("Ivanov".compareTo("Ivanov"));
         System.out.println("Ivanov".compareTo("Ivanova"));
         System.out.println("Petrov".compareTo("Ivanova"));
@@ -36,6 +36,7 @@ public class StringCompareTest {
         for (String elem : names) {
             System.out.println(elem);
         }
+*/
     }
 
     @Test
