@@ -40,7 +40,7 @@ public class UserTest {
         users.add(new User("Alex", 31));
         users.add(new User("Brain", 33));
         users.add(new User("Tom", 34));
-        Collections.sort(users, new userSortByName());
+        Collections.sort(users, new UserSortByName());
         Iterator<User> it = users.iterator();
         assertThat(it.next(), is(new User("Alex", 31)));
         assertThat(it.next(), is(new User("Brain", 33)));
@@ -55,7 +55,7 @@ public class UserTest {
         users.add(new User("Alex", 31));
         users.add(new User("Brain", 33));
         users.add(new User("Tom", 34));
-        Collections.sort(users, new userSortByAge());
+        Collections.sort(users, new UserSortByAge());
         Iterator<User> it = users.iterator();
         assertThat(it.next(), is(new User("Alex", 31)));
         assertThat(it.next(), is(new User("Petr", 32)));
@@ -70,7 +70,7 @@ public class UserTest {
         users.add(new User("Alex", 31));
         users.add(new User("Brain", 33));
         users.add(new User("Tom", 34));
-        Collections.sort(users, new userSortByNameDesc());
+        Collections.sort(users, new UserSortByNameDesc());
         Iterator<User> it = users.iterator();
         assertThat(it.next(), is(new User("Tom", 34)));
         assertThat(it.next(), is(new User("Petr", 32)));
@@ -85,7 +85,7 @@ public class UserTest {
         users.add(new User("Alex", 31));
         users.add(new User("Brain", 33));
         users.add(new User("Tom", 34));
-        Collections.sort(users, new userSortByAgeDesc());
+        Collections.sort(users, new UserSortByAgeDesc());
         Iterator<User> it = users.iterator();
         assertThat(it.next(), is(new User("Tom", 34)));
         assertThat(it.next(), is(new User("Brain", 33)));
@@ -102,7 +102,7 @@ public class UserTest {
         users.add(new User("Tom", 29));
         users.add(new User("Brain", 28));
         users.add(new User("Tom", 34));
-        Collections.sort(users, new userSortByName().thenComparing(new userSortByAge()));
+        Collections.sort(users, new UserSortByName().thenComparing(new UserSortByAge()));
         Iterator<User> it = users.iterator();
         assertThat(it.next(), is(new User("Alex", 31)));
         assertThat(it.next(), is(new User("Brain", 28)));
@@ -121,7 +121,7 @@ public class UserTest {
         users.add(new User("Tom", 29));
         users.add(new User("Brain", 28));
         users.add(new User("Tom", 32));
-        Collections.sort(users, new userSortByAgeDesc().thenComparing(new userSortByNameDesc()));
+        Collections.sort(users, new UserSortByAgeDesc().thenComparing(new UserSortByNameDesc()));
         Iterator<User> it = users.iterator();
         assertThat(it.next(), is(new User("Brain", 33)));
         assertThat(it.next(), is(new User("Tom", 32)));

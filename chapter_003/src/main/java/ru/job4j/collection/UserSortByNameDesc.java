@@ -2,10 +2,10 @@ package ru.job4j.collection;
 
 import java.util.Comparator;
 
-public class userSortByAge implements Comparator<User> {
+public class UserSortByNameDesc implements Comparator<User> {
 
     @Override
     public int compare(User o1, User o2) {
-        return Integer.compare(o1.getAge(), (o2.getAge()));
+        return o2.getName().compareTo(o1.getName());
     }
 }
