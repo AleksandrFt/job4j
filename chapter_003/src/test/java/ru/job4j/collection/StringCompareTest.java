@@ -2,9 +2,6 @@ package ru.job4j.collection;
 
 import org.junit.Test;
 
-import java.util.Set;
-import java.util.TreeSet;
-
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.core.Is.is;
@@ -19,24 +16,6 @@ public class StringCompareTest {
                 "Ivanov"
         );
         assertThat(rst, is(0));
-/*
-        System.out.println("Ivanov".compareTo("Ivanov"));
-        System.out.println("Ivanov".compareTo("Ivanova"));
-        System.out.println("Petrov".compareTo("Ivanova"));
-        System.out.println("Petrov".compareTo("Patrov"));
-        System.out.println("Patrova".compareTo("Petrov"));
-
-        Set<String> names = new TreeSet<String>();
-        names.add("Ivanov");
-        names.add("Ivanova");
-        names.add("Petrov");
-        names.add("Patrov");
-        names.add("Patrova");
-
-        for (String elem : names) {
-            System.out.println(elem);
-        }
-*/
     }
 
     @Test

@@ -7,17 +7,14 @@ public class StringCompare implements Comparator<String> {
     @Override
     public int compare(String o1, String o2) {
 
-        char[] result1 = o1.toCharArray();
-        char[] result2 = o2.toCharArray();
-        int sum1 = 0;
-        int sum2 = 0;
-
-        for (char elem : result1) {
-            sum1 = sum1 + (int)elem;
+        int i = 0;
+        while (i < o1.length() && i < o2.length()) {
+            if (o1.charAt(i) != o2.charAt(i)) {
+                return Character.compare(o1.charAt(i), o2.charAt(i));
+            } else {
+                i++;
+            }
         }
-        for (char elem : result2) {
-            sum2 = sum2 + (int)elem;
-        }
-        return sum1 - sum2;
+        return Integer.compare(o1.length(), o2.length());
     }
 }
