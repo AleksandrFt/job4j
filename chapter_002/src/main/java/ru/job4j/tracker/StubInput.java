@@ -12,7 +12,7 @@ public class StubInput implements Input {
         return answers[position++];
     }
 
-    public int ask(String question, int[] range) throws MenuOutException, NumberFormatException{
+    public int ask(String question, int[] range) throws MenuOutException, NumberFormatException {
         int key = Integer.valueOf(this.ask(question));
         boolean exist = false;
         for (int value : range) {

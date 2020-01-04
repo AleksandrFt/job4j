@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-public class AddItem extends BaseAction{
+public class AddItem extends BaseAction {
 
     public AddItem(int key, String name) {
         super(key, name);
