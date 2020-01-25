@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class DeleteItem extends BaseAction {
 
     public DeleteItem(int key, String name) {
@@ -7,12 +9,12 @@ public class DeleteItem extends BaseAction {
     }
 
     @Override
-    public void execute(Input input, Tracker tracker) {
+    public void execute(Input input, Tracker tracker, Consumer<String> output) {
         String answer = input.ask("Введите ID заявки : ");
         if (tracker.delete(answer)) {
-            System.out.println("Заявка успешно удалена");
+            output.accept("Заявка успешно удалена");
         } else {
-            System.out.println("Что то пошло не так, попробуйте еще раз");
+            output.accept("Что то пошло не так, попробуйте еще раз");
         }
     }
 }

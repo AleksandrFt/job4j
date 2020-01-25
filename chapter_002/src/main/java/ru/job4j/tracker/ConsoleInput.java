@@ -10,14 +10,11 @@ public class ConsoleInput implements Input {
         return scanner.nextLine();
     }
 
-    public int ask(String question, int[] range) {
+    public int ask(String question, int max) {
         int key = Integer.valueOf(this.ask(question));
         boolean exist = false;
-        for (int value : range) {
-            if (key == value) {
-                exist = true;
-                break;
-            }
+        if (key < max) {
+            exist = true;
         }
         if (!exist) {
             throw new MenuOutException("Out of menu range");
