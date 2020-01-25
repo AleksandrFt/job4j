@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class FindByIdItem extends BaseAction {
 
     public FindByIdItem(int key, String name) {
@@ -7,9 +9,9 @@ public class FindByIdItem extends BaseAction {
     }
 
     @Override
-    public void execute(Input input, Tracker tracker) {
+    public void execute(Input input, Tracker tracker, Consumer<String> output) {
         String answer = input.ask("Введите ID заявки : ");
         Item item = tracker.findById(answer);
-        System.out.printf("%s %s %s%n", item.getName(), item.getDescription(), item.getId());
+        output.accept(String.format("%s %s %s", item.getName(), item.getDescription(), item.getId()));
     }
 }
