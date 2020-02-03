@@ -41,10 +41,10 @@ public class SchoolTest {
         List<Student> students = Arrays.asList(student1, student2, student3, student4,
                 student5, student6);
 
-        List<Student> midleSchool = school.collect(students, x -> 50 <= x.getScore() && x.getScore() < 70);
+        List<Student> middleSchool = school.collect(students, x -> 50 <= x.getScore() && x.getScore() < 70);
         List<Student> expected = Arrays.asList(student3, student6);
 
-        assertThat(midleSchool, is(expected));
+        assertThat(middleSchool, is(expected));
     }
 
     @Test
