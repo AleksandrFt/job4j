@@ -2,8 +2,7 @@ package ru.job4j.streamapi;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -23,10 +22,10 @@ public class SchoolTest {
         List<Student> students = Arrays.asList(student1, student2, student3, student4,
                 student5, student6);
 
-        List<Student> classA = school.collect(students, x -> x.getScore() < 50);
+        List<Student> lowSchool = school.collect(students, x -> x.getScore() < 50);
         List<Student> expected = Arrays.asList(student2, student4);
 
-        assertThat(classA, is(expected));
+        assertThat(lowSchool, is(expected));
     }
 
     @Test
@@ -42,10 +41,10 @@ public class SchoolTest {
         List<Student> students = Arrays.asList(student1, student2, student3, student4,
                 student5, student6);
 
-        List<Student> classA = school.collect(students, x -> 50 <= x.getScore() && x.getScore() < 70);
+        List<Student> midleSchool = school.collect(students, x -> 50 <= x.getScore() && x.getScore() < 70);
         List<Student> expected = Arrays.asList(student3, student6);
 
-        assertThat(classA, is(expected));
+        assertThat(midleSchool, is(expected));
     }
 
     @Test
@@ -61,9 +60,24 @@ public class SchoolTest {
         List<Student> students = Arrays.asList(student1, student2, student3, student4,
                 student5, student6);
 
-        List<Student> classA = school.collect(students, x -> 70 <= x.getScore() && x.getScore() <= 100);
+        List<Student> highSchool = school.collect(students, x -> 70 <= x.getScore() && x.getScore() <= 100);
         List<Student> expected = Arrays.asList(student1, student5);
 
-        assertThat(classA, is(expected));
+        assertThat(highSchool, is(expected));
+    }
+
+    @Test
+    public void convertListToMap() {
+        School school = new School();
+        Student student1 = new Student("Ivan", "Sidorov", 85);
+        Student student2 = new Student("Nikola", "Petrov", 5);
+        Student student3 = new Student("Svetlana", "Korotkova", 55);
+        List<Student> students = Arrays.asList(student1, student2, student3);
+        Map<String, Student> studentMap = school.convertListToMap(students);
+        Map<String, Student> expected = new HashMap();
+        expected.put("Sidorov", student1);
+        expected.put("Petrov", student2);
+        expected.put("Korotkova", student3);
+        assertThat(studentMap, is(expected));
     }
 }
