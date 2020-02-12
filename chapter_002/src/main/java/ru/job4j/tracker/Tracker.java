@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author afateev
@@ -30,17 +31,14 @@ public class Tracker {
      * @return true, если замена случилась.
      */
     public boolean replace(String id, Item item) {
-        boolean result = false;
-        for (int i = 0; i != items.size(); i++) {
-            if (this.items.get(i).getId().equals(id)) {
-                item.setId(this.items.get(i).getId());
-                this.items.set(i, item);
-                result = true;
-                break;
-            }
+        boolean rsl = false;
+        if (findById(id) != null) {
+            item.setId(findById(id).getId());
+            items.set(items.indexOf(findById(id)), item);
+            rsl = true;
         }
-        return result;
-    }
+        return rsl;
+}
 
     /**
      * Метод удаляет заявку в трекере.
@@ -48,16 +46,8 @@ public class Tracker {
      * @return true, если заявка была удалена.
      */
     public boolean delete(String id) {
-        boolean result = false;
-        for (int i = 0; i < items.size(); i++) {
-            if (this.items.get(i).getId().equals(id)) {
-                    this.items.remove(i);
-                    result = true;
-                    break;
-                }
-            }
-        return result;
-    }
+        return items.remove(findById(id));
+}
 
     /**
      * Метод находит все заявки.
@@ -73,13 +63,9 @@ public class Tracker {
      * @return массив заявок.
      */
     public ArrayList<Item> findByName(String key) {
-        ArrayList<Item> result = new ArrayList<>();
-        for (Item item : items) {
-            if (item.getName().equals(key)) {
-                result.add(item);
-            }
-        }
-        return result;
+        return items.stream()
+                .filter(x -> x.getName().equals(key))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
@@ -88,13 +74,10 @@ public class Tracker {
      * @return item.
      */
     public Item findById(String id) {
-        Item result = null;
-        for (Item item : items) {
-            if (item.getId().equals(id)) {
-                result = item;
-            }
-        }
-        return result;
+        return items.stream()
+                .filter(x -> x.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -103,14 +86,10 @@ public class Tracker {
      * @return item.
      */
     public Item findByDescription(String word) {
-        Item result = null;
-        for (Item item : items) {
-            if (item.getDescription().contains(word)) {
-                result = item;
-                break;
-            }
-        }
-        return result;
+        return items.stream()
+                .filter(x -> x.getDescription().contains(word))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
