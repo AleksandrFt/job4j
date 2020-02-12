@@ -38,16 +38,16 @@ public class Tracker {
             rsl = true;
         }
         return rsl;
-}
+    }
 
     /**
      * Метод удаляет заявку в трекере.
      * @param id удаляемой заявки.
      * @return true, если заявка была удалена.
      */
-    public boolean delete(String id) {
+    public boolean delete(String id){
         return items.remove(findById(id));
-}
+    }
 
     /**
      * Метод находит все заявки.
