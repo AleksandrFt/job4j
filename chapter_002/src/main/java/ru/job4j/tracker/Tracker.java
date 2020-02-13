@@ -33,7 +33,7 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         boolean rsl = false;
         if (findById(id) != null) {
-            item.setId(findById(id).getId());
+            item.setId(id);
             items.set(items.indexOf(findById(id)), item);
             rsl = true;
         }
