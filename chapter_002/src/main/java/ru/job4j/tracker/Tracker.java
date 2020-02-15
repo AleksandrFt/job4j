@@ -26,15 +26,16 @@ public class Tracker {
 
     /**
      * Метод заменяет заявку одну заявку на другую, не меняя ID заявки.
-     * @param id заявки.
-     * @param item новая заявка.
+     * @param oldItemId заявки.
+     * @param newItem новая заявка.
      * @return true, если замена случилась.
      */
-    public boolean replace(String id, Item item) {
+    public boolean replace(String oldItemId, Item newItem) {
         boolean rsl = false;
-        if (findById(id) != null) {
-            item.setId(id);
-            items.set(items.indexOf(findById(id)), item);
+        Item oldItem = findById(oldItemId);
+        if (oldItem != null) {
+            newItem.setId(oldItemId);
+            items.set(items.indexOf(oldItem), newItem);
             rsl = true;
         }
         return rsl;
