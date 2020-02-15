@@ -32,10 +32,10 @@ public class Tracker {
      */
     public boolean replace(String oldItemId, Item newItem) {
         boolean rsl = false;
-        Item oldItem = findById(oldItemId);
-        if (oldItem != null) {
+        int indexOldItem = items.indexOf(findById(oldItemId));
+        if (indexOldItem != -1) {
             newItem.setId(oldItemId);
-            items.set(items.indexOf(oldItem), newItem);
+            items.set(indexOldItem, newItem);
             rsl = true;
         }
         return rsl;
