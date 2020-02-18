@@ -32,10 +32,10 @@ public class Tracker {
      */
     public boolean replace(String oldItemId, Item newItem) {
         boolean rsl = false;
-        int indexOldItem = items.indexOf(findById(oldItemId));
-        if (indexOldItem != -1) {
+        int index = indexOf(oldItemId);
+        if (index != -1) {
             newItem.setId(oldItemId);
-            items.set(indexOldItem, newItem);
+            items.set(index, newItem);
             rsl = true;
         }
         return rsl;
@@ -99,5 +99,14 @@ public class Tracker {
      */
     String generateId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
+    }
+
+    private Integer indexOf(String id) {
+        return items.stream()
+                .filter(x -> x.getId().equals(id))
+                .findFirst()
+                .map(x -> items.indexOf(x))
+                .orElse(-1);
+
     }
 }

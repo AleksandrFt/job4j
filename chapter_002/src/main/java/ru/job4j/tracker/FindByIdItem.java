@@ -12,6 +12,10 @@ public class FindByIdItem extends BaseAction {
     public void execute(Input input, Tracker tracker, Consumer<String> output) {
         String answer = input.ask("Введите ID заявки : ");
         Item item = tracker.findById(answer);
-        output.accept(String.format("%s %s %s", item.getName(), item.getDescription(), item.getId()));
+        if (item != null) {
+            output.accept(String.format("%s %s %s", item.getName(), item.getDescription(), item.getId()));
+        } else {
+            output.accept(String.format("Заявки с ID - %s не найдено", answer));
+        }
     }
 }
