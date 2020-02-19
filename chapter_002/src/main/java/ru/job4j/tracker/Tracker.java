@@ -46,8 +46,14 @@ public class Tracker {
      * @param id удаляемой заявки.
      * @return true, если заявка была удалена.
      */
-    public boolean delete(String id){
-        return items.remove(findById(id));
+    public boolean delete(String id) {
+        boolean result = false;
+        int index = indexOf(id);
+        if (index != -1) {
+            items.remove(index);
+            result = true;
+        }
+        return result;
     }
 
     /**
@@ -101,12 +107,13 @@ public class Tracker {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
-    private Integer indexOf(String id) {
-        return items.stream()
-                .filter(x -> x.getId().equals(id))
-                .findFirst()
-                .map(x -> items.indexOf(x))
-                .orElse(-1);
-
+    private int indexOf(String id) {
+        int result = -1;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
+                result = i;
+            }
+        }
+        return result;
     }
 }
