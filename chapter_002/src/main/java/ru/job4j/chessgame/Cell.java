@@ -28,4 +28,8 @@ public enum Cell {
         }
         return result;
     }
+
+    public static Cell plus(Cell cell, int x, int y) {
+        return findByXY(cell.x + x, cell.y + y);
+    }
 }

@@ -2,6 +2,12 @@ package ru.job4j.chessgame;
 
 import ru.job4j.chessgame.exception.*;
 
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Optional;
+
+import static java.util.Objects.isNull;
+
 public class Logic {
 
     private Figure[] figures = new Figure[32];
@@ -56,6 +62,7 @@ public class Logic {
         for (int i = 0; i < figures.length; i++) {
             if(figures[i] != null && figures[i].getPosition().equals(cell)) {
                 result = i;
+                break;
             }
         }
         return result;
@@ -69,12 +76,18 @@ public class Logic {
      * @throws OccupiedWayException путь занят другой фигурой.
      */
     public boolean checkWay(Cell[] steps) throws OccupiedWayException {
-        for (Cell step : steps) {
-            if (step != null && findByCell(step) != -1) {
-                throw new OccupiedWayException("Путь занят.");
-            }
+        boolean rsl = Arrays.stream(steps)
+                .noneMatch(x -> x != null && findByCell(x) != -1);
+        if(!rsl) {
+            throw new OccupiedWayException("Путь занят.");
         }
         return true;
+//        for (Cell step : steps) {
+//            if (step != null && findByCell(step) != -1) {
+//                throw new OccupiedWayException("Путь занят.");
+//            }
+//        }
+//        return true;
     }
 
     public void clean() {

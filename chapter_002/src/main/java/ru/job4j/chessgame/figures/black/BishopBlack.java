@@ -23,16 +23,19 @@ public class BishopBlack extends Figure {
         if (!(Math.abs(dest.x - source.x) == Math.abs(dest.y - source.y))) {
             throw new ImpossibleMoveException("Ход сделать невозможно.");
         }
-        int wayCellLength = Math.max(Math.abs(source.x - dest.x), Math.abs(source.y - dest.y));
-        Cell[] steps = new Cell[wayCellLength];
-        int osX = source.x;
-        int osY = source.y;
-        for(int index = 0; index != wayCellLength; index++) {
-            if(source.x < dest.x) {
-                steps[index] = source.y < dest.y ? Cell.findByXY(++osX, ++osY) : Cell.findByXY(++osX, --osY);
-            } else {
-                steps[index] = source.y < dest.y ? Cell.findByXY(--osX, ++osY) : Cell.findByXY(--osX, --osY);
-            }
+        return getWay(source, dest);
+    }
+
+    public Cell[] getWay(Cell source, Cell dest) {
+        Cell[] steps = new Cell [Math.abs(source.x - dest.x)];
+        Cell nextStep = source;
+        int deltaX = Integer.compare(dest.x, source.x);
+        int deltaY = Integer.compare(dest.y, source.y);
+        int i = 0;
+        while(nextStep != dest) {
+            nextStep = Cell.plus(nextStep, deltaX, deltaY);
+            steps[i] = nextStep;
+            i++;
         }
         return steps;
     }
