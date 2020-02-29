@@ -38,6 +38,8 @@ public class Logic {
                 if (checkWay(steps)) {
                     figures[index] = figures[index].copy(dest);
                     result = true;
+                } else {
+                    throw new OccupiedWayException("Путь занят.");
                 }
             } else if (index == -1) {
                 throw new FigureNotFoundException("Клетка пустая.");
@@ -75,13 +77,18 @@ public class Logic {
      * @return  true, если путь свободен.
      * @throws OccupiedWayException путь занят другой фигурой.
      */
-    public boolean checkWay(Cell[] steps) throws OccupiedWayException {
-        boolean rsl = Arrays.stream(steps)
+    public boolean checkWay(Cell[] steps) {
+        return Arrays.stream(steps)
                 .noneMatch(x -> x != null && findByCell(x) != -1);
-        if(!rsl) {
-            throw new OccupiedWayException("Путь занят.");
-        }
-        return true;
+
+
+//        boolean rsl = Arrays.stream(steps)
+//                .noneMatch(x -> x != null && findByCell(x) != -1);
+//        if(!rsl) {
+//            throw new OccupiedWayException("Путь занят.");
+//        } else {
+//            return true;
+//        }
 //        for (Cell step : steps) {
 //            if (step != null && findByCell(step) != -1) {
 //                throw new OccupiedWayException("Путь занят.");
