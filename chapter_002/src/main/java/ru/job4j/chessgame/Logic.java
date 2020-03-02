@@ -33,17 +33,15 @@ public class Logic {
         boolean result = false;
         int index = findByCell(source);
         try {
-            if (index != -1 && findByCell(dest) == -1) {
-                Cell[] steps = figures[index].way(figures[index].getPosition(), dest);
-                if (checkWay(steps)) {
-                    figures[index] = figures[index].copy(dest);
-                    result = true;
-                } else {
-                    throw new OccupiedWayException("Путь занят.");
-                }
-            } else if (index == -1) {
+            if (index == -1) {
                 throw new FigureNotFoundException("Клетка пустая.");
-                }
+            }
+            Cell[] steps = figures[index].way(figures[index].getPosition(), dest);
+            if (!checkWay(steps)) {
+                throw new OccupiedWayException("Путь занят.");
+            }
+            figures[index] = figures[index].copy(dest);
+            result = true;
         } catch(FigureNotFoundException fnf){
             System.out.println("Клетка пустая.");
         } catch(ImpossibleMoveException ime){
@@ -80,21 +78,6 @@ public class Logic {
     public boolean checkWay(Cell[] steps) {
         return Arrays.stream(steps)
                 .noneMatch(x -> x != null && findByCell(x) != -1);
-
-
-//        boolean rsl = Arrays.stream(steps)
-//                .noneMatch(x -> x != null && findByCell(x) != -1);
-//        if(!rsl) {
-//            throw new OccupiedWayException("Путь занят.");
-//        } else {
-//            return true;
-//        }
-//        for (Cell step : steps) {
-//            if (step != null && findByCell(step) != -1) {
-//                throw new OccupiedWayException("Путь занят.");
-//            }
-//        }
-//        return true;
     }
 
     public void clean() {
