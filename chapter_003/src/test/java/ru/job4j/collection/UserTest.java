@@ -16,8 +16,6 @@ public class UserTest {
                                 new User("Ivan", 31),
                                 new User("Ivan", 33),
                                 new User("Ivan", 32)));
-
-        users.forEach(x -> System.out.println(x));
         Iterator<User> it = users.iterator();
         assertThat(it.next(), is(new User("Ivan", 31)));
         assertThat(it.next(), is(new User("Ivan", 32)));
