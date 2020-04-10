@@ -1,7 +1,7 @@
 package ru.job4j.streamapi;
 
 
-public class Student implements Comparable <Student>{
+public class Student implements Comparable<Student> {
     public int score;
     private String name;
     private String surname;
@@ -10,7 +10,7 @@ public class Student implements Comparable <Student>{
         this.score = score;
     }
 
-    public Student (String name, int score) {
+    public Student(String name, int score) {
         this.name = name;
         this.score = score;
     }
