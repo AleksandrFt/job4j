@@ -14,7 +14,7 @@ public class MatrixConvertToListTest {
         MatrixConvertToList matrixToList = new MatrixConvertToList();
         Integer[][] matrix = {{3, 2, 1}, {6, 5, 4}, {9, 8, 7}};
         List<Integer> result = matrixToList.convert(matrix);
-        List<Integer> expected = Arrays.asList(3, 2, 1, 6, 5, 4, 9, 8, 7);
+        List<Integer> expected = List.of(3, 2, 1, 6, 5, 4, 9, 8, 7);
         assertThat(result, is(expected));
     }
 }

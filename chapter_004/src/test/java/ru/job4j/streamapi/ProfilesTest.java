@@ -22,8 +22,8 @@ public class ProfilesTest {
             Profile profile3 = new Profile(address3);
             Profile profile4 = new Profile(address4);
             Profile profile5 = new Profile(address5);
-            List<Profile> profiles = Arrays.asList(profile1, profile2, profile3, profile4, profile5);
-            List<Address> expected = Arrays.asList(address4, address1, address3, address2);
+            List<Profile> profiles = List.of(profile1, profile2, profile3, profile4, profile5);
+            List<Address> expected = List.of(address4, address1, address3, address2);
             List<Address> listAddress = new Profiles().collect(profiles);
             assertThat(listAddress, is(expected));
     }
