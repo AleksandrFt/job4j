@@ -42,11 +42,11 @@ public class Logic {
             }
             figures[index] = figures[index].copy(dest);
             result = true;
-        } catch(FigureNotFoundException fnf){
+        } catch (FigureNotFoundException fnf) {
             System.out.println("Клетка пустая.");
-        } catch(ImpossibleMoveException ime){
+        } catch (ImpossibleMoveException ime) {
             System.out.println("Этот ход сделать невозможно.");
-        } catch(OccupiedWayException owe){
+        } catch (OccupiedWayException owe) {
             System.out.println("Путь занят.");
         }
             return result;
@@ -57,10 +57,10 @@ public class Logic {
      * @param cell клетка доски.
      * @return индекс фигуры в массиве.
      */
-    public int findByCell(Cell cell){
+    public int findByCell(Cell cell) {
         int result = -1;
         for (int i = 0; i < figures.length; i++) {
-            if(figures[i] != null && figures[i].getPosition().equals(cell)) {
+            if (figures[i] != null && figures[i].getPosition().equals(cell)) {
                 result = i;
                 break;
             }

@@ -26,8 +26,8 @@ public class RookWhite extends Figure {
         Cell[] steps = new Cell[wayCellLength];
         int osX = source.x;
         int osY = source.y;
-        for(int index = 0; index != wayCellLength; index++) {
-            if(Math.abs(source.x - dest.x) != 0) {
+        for (int index = 0; index != wayCellLength; index++) {
+            if (Math.abs(source.x - dest.x) != 0) {
                 steps[index] = source.x < dest.x ? Cell.findByXY(++osX, osY) : Cell.findByXY(--osX, osY);
             } else if (Math.abs(source.y - dest.y) != 0) {
                 steps[index] = source.y < dest.y ? Cell.findByXY(osX, ++osY) : Cell.findByXY(osX, --osY);

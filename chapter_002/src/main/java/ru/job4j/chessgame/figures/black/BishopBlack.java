@@ -27,12 +27,12 @@ public class BishopBlack extends Figure {
     }
 
     public Cell[] getWay(Cell source, Cell dest) {
-        Cell[] steps = new Cell [Math.abs(source.x - dest.x)];
+        Cell[] steps = new Cell[Math.abs(source.x - dest.x)];
         Cell nextStep = source;
         int deltaX = Integer.compare(dest.x, source.x);
         int deltaY = Integer.compare(dest.y, source.y);
         int i = 0;
-        while(nextStep != dest) {
+        while (nextStep != dest) {
             nextStep = Cell.plus(nextStep, deltaX, deltaY);
             steps[i] = nextStep;
             i++;

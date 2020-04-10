@@ -27,15 +27,15 @@ public class QeenBlack extends Figure {
         Cell[] steps = new Cell[wayCellLength];
         int osX = source.x;
         int osY = source.y;
-        for(int index = 0; index != wayCellLength; index++) {
-            if(source.x < dest.x && (source.y < dest.y || source.y > dest.y)) {
+        for (int index = 0; index != wayCellLength; index++) {
+            if (source.x < dest.x && (source.y < dest.y || source.y > dest.y)) {
                 steps[index] = source.y < dest.y ? Cell.findByXY(++osX, ++osY) : Cell.findByXY(++osX, --osY);
-            } else if(source.x > dest.x && (source.y < dest.y || source.y > dest.y)) {
+            } else if (source.x > dest.x && (source.y < dest.y || source.y > dest.y)) {
                 steps[index] = source.y < dest.y ? Cell.findByXY(--osX, ++osY) : Cell.findByXY(--osX, --osY);
-            } else if(Math.abs(source.x - dest.x) != 0
+            } else if (Math.abs(source.x - dest.x) != 0
                     && source.y == dest.y) {
                 steps[index] = source.x < dest.x ? Cell.findByXY(++osX, osY) : Cell.findByXY(--osX, osY);
-            } else if(Math.abs(source.y - dest.y) != 0
+            } else if (Math.abs(source.y - dest.y) != 0
                     && source.x == dest.x) {
                 steps[index] = source.y < dest.y ? Cell.findByXY(osX, ++osY) : Cell.findByXY(osX, --osY);
             }

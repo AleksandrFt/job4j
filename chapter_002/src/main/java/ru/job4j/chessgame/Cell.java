@@ -20,8 +20,8 @@ public enum Cell {
 
     public static Cell findByXY(int x, int y) {
         Cell result = null;
-        for(Cell value : Cell.values()) {
-            if(x == value.x && y == value.y) {
+        for (Cell value : Cell.values()) {
+            if (x == value.x && y == value.y) {
                 result = value;
                 break;
             }

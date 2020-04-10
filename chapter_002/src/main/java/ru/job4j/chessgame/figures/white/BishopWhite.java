@@ -27,8 +27,8 @@ public class BishopWhite extends Figure {
         Cell[] steps = new Cell[wayCellLength];
         int osX = source.x;
         int osY = source.y;
-        for(int index = 0; index != wayCellLength; index++) {
-            if(source.x < dest.x) {
+        for (int index = 0; index != wayCellLength; index++) {
+            if (source.x < dest.x) {
                 steps[index] = source.y < dest.y ? Cell.findByXY(++osX, ++osY) : Cell.findByXY(++osX, --osY);
             } else {
                 steps[index] = source.y < dest.y ? Cell.findByXY(--osX, ++osY) : Cell.findByXY(--osX, --osY);
