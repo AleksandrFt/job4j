@@ -80,4 +80,23 @@ public class SchoolTest {
         expected.put("Korotkova", student3);
         assertThat(studentMap, is(expected));
     }
+
+    @Test
+    public void sortListStudentAndReturnGroupStudent() {
+        School school = new School();
+
+        Student student1 = new Student("Sasha", 85);
+        Student student2 = new Student("Vasja", 5);
+        Student student3 = new Student("Petya", 55);
+        Student student4 = new Student("Klava", 15);
+        Student student5 = new Student("Anna", 75);
+        Student student6 = new Student("Tanya", 65);
+        List<Student> students = Arrays.asList(student1, student2, student3, student4,
+                student5, student6);
+
+        List<Student> highSchool = school.levelOf(students, 50);
+        List<Student> expected = Arrays.asList(student1, student5, student6, student3);
+
+        assertThat(highSchool, is(expected));
+    }
 }
